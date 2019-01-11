@@ -14,7 +14,7 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     'jsonschema==2.6.0',
     'Click>=7.0',
-    'jsonnet==0.11.2',
+    'jsonnet==0.12.1',
     'validators==0.12.3',
     'cookiecutter==1.6.0',
     'git-url-parse==1.1.0'
