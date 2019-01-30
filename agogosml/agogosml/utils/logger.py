@@ -5,6 +5,8 @@ import logging.config
 from pathlib import Path
 
 import yaml
+from typing import Dict
+from typing import Optional
 from typing import Union
 from applicationinsights import TelemetryClient
 from applicationinsights.channel import AsynchronousQueue
@@ -87,6 +89,11 @@ class Logger(object):
         :param message: Error message string.
         """
         self._log(logging.ERROR, message)
+
+    def event(self, name: str, props: Optional[Dict[str, str]] = None):
+        props = props or {}
+        self._logger.info('Event %s: %r', name, props)
+        self._telemetry.track_event(name, props)
 
     def _log(self, level: int, message: str):
         if not self._logger.isEnabledFor(level):
